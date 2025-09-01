@@ -12,6 +12,4 @@ urlpatterns = [
     # Rutas para el login y el logout, usando las vistas que Django ya tiene
     path('login/', auth_views.LoginView.as_view(template_name='usuarios/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='usuarios/logout.html'), name='logout'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='usuarios/logout.html'), name='looogout'),
-    
 ]
