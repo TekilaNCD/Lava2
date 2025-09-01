@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <!-- Aquí puedes enlazar tu archivo CSS -->
+</head>
+<body>
+    <h2>Regístrate</h2>
+    <form method="POST">
+        {% csrf_token %} <!-- Token de seguridad de Django -->
+        {{ form.as_p }} <!-- Renderiza los campos del formulario -->
+        <button type="submit">Registrarse</button>
+    </form>
+</body>
+</html>
