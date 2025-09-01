@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'lavadero_bd',
         'USER': 'postgres',
-        'PASSWORD': 'postgresql', # ¡Recuerda poner tu contraseña real aquí!
+        'PASSWORD': 'postgres', # ¡Recuerda poner tu contraseña real aquí!
         'HOST': 'localhost',
         'PORT': '5432',
         # ¡ESTA ES LA LÍNEA QUE ARREGLA EL PROBLEMA!

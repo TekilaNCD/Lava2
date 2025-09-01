@@ -7,6 +7,9 @@
 </head>
 <body>
     <h2>Regístrate</h2>
+        {% if form.errors %}
+            <p style="color: red;">Por favor corrige los errores en el formulario.</p>
+        {% endif %}
     <form method="POST">
         {% csrf_token %} <!-- Token de seguridad de Django -->
         {{ form.as_p }} <!-- Renderiza los campos del formulario -->
