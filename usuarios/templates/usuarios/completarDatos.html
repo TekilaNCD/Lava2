@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAVA2 - Datos Personales</title>
+  <link rel="stylesheet" href="/Lava2/lavadero_project/styles/styles.css">
+</head>
+<body class="bg">
+  <div class="container">
+    <h1 class="logo">LAVA2</h1>
+    <h2>Vamos a completar datos</h2>
+    <p>Todos los campos son obligatorios. ¡Llénalos para continuar!</p>
+
+    <form id="personalForm">
+      <div class="upload">
+        <input type="file" id="profilePic" accept="image/*">
+      </div>
+
+      <div class="form-grid">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="apellido" placeholder="Apellido" required>
+
+        <select id="tipoDocumento" required>
+          <option value="">Tipo de Documento</option>
+          <option>Cédula de Ciudadanía</option>
+          <option>Tarjeta de Identidad</option>
+          <option>Cédula de Extranjería</option>
+          <option>Pasaporte</option>
+          <option>Documento de Identidad Extranjero</option>
+        </select>
+        <input type="text" id="numeroDocumento" placeholder="Número de Documento" required>
+
+        <select id="metodoPago" required>
+          <option value="">Método de Pago</option>
+          <option>Tarjeta de Crédito</option>
+          <option>Tarjeta Débito</option>
+          <option>Efectivo</option>
+          <option>Transferencia Bancaria</option>
+          <option>Nequi/Daviplata</option>
+        </select>
+        <input type="text" id="numeroCuenta" placeholder="Número de Cuenta">
+
+        <input type="text" id="modeloMarca" placeholder="Modelo y marca del vehículo" required>
+        <input type="text" id="placa" placeholder="Placa del Vehículo" required>
+
+        <input type="text" id="tipoCarro" placeholder="Tipo de Carro" required>
+        <input type="text" id="ciudad" placeholder="Ciudad" required>
+        <input type="text" id="direccion" placeholder="Dirección" required>
+      </div>
+
+      <label class="checkbox">
+        <input type="checkbox" id="cuidadoEspecial"> ¿Tu vehículo requiere cuidado especial?
+      </label>
+
+    <div class="checkbox">
+        <input type="checkbox" id="terms">
+        <label for="terms">Acepto los términos y condiciones</label>
+    </div>
+
+
+      <button type="submit" class="btn">Guardar Información</button>
+    </form>
+  </div>
+
+  <script src="/Lava2/lavadero_project/JS/script.js"></script>
+</body>
+</html>
+<!-- usuarios/templates/usuarios/completarDatos.html -->

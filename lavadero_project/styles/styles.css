@@ -1,0 +1,124 @@
+body.bg {
+  font-family: Arial, sans-serif;
+  background: url("/Lava2/lavadero_project/recourse/d7f783e0-784a-4fd1-9adc-733acd9c01b8.png") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal para web */
+.container {
+  max-width: 900px;   /* más ancho para desktop */
+  margin: 40px auto;
+  padding: 40px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.267);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+.logo {
+  font-family: "lacquer", cursive, lacquer;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* Inputs y selects */
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #bbbbbb;
+  font-size: 1rem;
+}
+
+/* Botones principales */
+.btn {
+  width: 100%;
+  padding: 14px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #333;
+}
+
+/* Botones sociales */
+.social-login {
+  margin: 20px 0;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.social-login button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.social-login button:hover {
+  background: #f0f0f0;
+}
+
+/* Checkbox y términos */
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centrado en el contenedor */
+  margin-top: 15px;
+  font-size: 0.9rem;
+  gap: 8px;  /* separación pequeña entre el check y el texto */
+}
+
+.checkbox input[type="checkbox"] {
+  margin: 0;   /* quita márgenes raros del navegador */
+  transform: scale(1.2); /* lo hace un poco más grande */
+  cursor: pointer;
+}
+
+.checkbox label {
+  cursor: pointer;  /* hace clic en el texto también marca el check */
+}
+
+
+/* Para formulario de datos personales → grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 90%;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .container {
+    max-width: 95%;
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr; /* en móvil se apila */
+  }
+}
