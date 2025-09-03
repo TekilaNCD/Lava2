@@ -8,7 +8,7 @@ body.bg {
 
 /* Contenedor principal para web */
 .container {
-  max-width: 900px;   /* más ancho para desktop */
+  max-width: 900px;
   margin: 40px auto;
   padding: 40px;
   text-align: center;
@@ -54,50 +54,93 @@ form textarea {
   background: #333;
 }
 
-/* Botones sociales */
-.social-login {
-  margin: 20px 0;
+/* Upload foto perfil */
+.profile-upload {
+  width: 200px;
+  margin: 0 auto 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
-  gap: 15px;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.social-login button {
-  flex: 1;
-  padding: 12px;
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-btn {
+  padding: 10px 20px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  background: white;
+  background: black;
+  color: white;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: 0.3s;
+  text-align: center;
 }
 
-.social-login button:hover {
-  background: #f0f0f0;
+.upload-btn:hover {
+  background: #333;
 }
 
-/* Checkbox y términos */
+/* Checkbox */
 .checkbox {
   display: flex;
   align-items: center;
-  justify-content: center; /* centrado en el contenedor */
+  justify-content: center;
   margin-top: 15px;
   font-size: 0.9rem;
-  gap: 8px;  /* separación pequeña entre el check y el texto */
+  gap: 8px;
 }
 
 .checkbox input[type="checkbox"] {
-  margin: 0;   /* quita márgenes raros del navegador */
-  transform: scale(1.2); /* lo hace un poco más grande */
+  margin: 0;
+  transform: scale(1.2);
   cursor: pointer;
 }
 
 .checkbox label {
-  cursor: pointer;  /* hace clic en el texto también marca el check */
+  cursor: pointer;
 }
 
+/* Textarea cuidado especial */
+.center-textarea {
+  text-align: center;
+  margin-top: 20px;
+}
 
-/* Para formulario de datos personales → grid */
+.center-textarea label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.center-textarea textarea {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  resize: none;
+}
+
+/* Grid formulario */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -111,7 +154,7 @@ form textarea {
   width: 90%;
 }
 
-/* Responsive para pantallas pequeñas */
+/* Responsive */
 @media (max-width: 768px) {
   .container {
     max-width: 95%;
@@ -119,6 +162,6 @@ form textarea {
   }
 
   .form-grid {
-    grid-template-columns: 1fr; /* en móvil se apila */
+    grid-template-columns: 1fr;
   }
 }

@@ -24,3 +24,18 @@ document.getElementById("personalForm")?.addEventListener("submit", function(e) 
   alert("Datos guardados correctamente");
   // Aquí después se manda al backend de Django con fetch() o axios
 });
+
+const fileInput = document.getElementById('fileUpload');
+const previewImg = document.getElementById('preview');
+
+fileInput.addEventListener('change', function() {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      previewImg.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
+});
+

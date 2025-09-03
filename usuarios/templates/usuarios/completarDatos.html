@@ -13,10 +13,15 @@
     <p>Todos los campos son obligatorios. ¡Llénalos para continuar!</p>
 
     <form id="personalForm">
-      <div class="upload">
-        <input type="file" id="profilePic" accept="image/*">
+      <!-- Upload foto perfil -->
+      <div class="profile-upload">
+        <div class="profile-pic">
+          <img id="preview" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Foto de perfil">
+        </div>
+        <input type="file" id="profilePic" accept="image/*" hidden>
+        <label for="profilePic" class="upload-btn">Subir Foto</label>
       </div>
-
+        
       <div class="form-grid">
         <input type="text" id="nombre" placeholder="Nombre" required>
         <input type="text" id="apellido" placeholder="Apellido" required>
@@ -49,21 +54,37 @@
         <input type="text" id="direccion" placeholder="Dirección" required>
       </div>
 
-      <label class="checkbox">
-        <input type="checkbox" id="cuidadoEspecial"> ¿Tu vehículo requiere cuidado especial?
-      </label>
+      <!-- Cuidado especial centrado -->
+      <div class="form-group center-textarea">
+        <label for="cuidadoEspecial">¿Tu vehículo requiere cuidado especial?</label>
+        <textarea id="cuidadoEspecial" placeholder="Escribe aquí si tu vehículo necesita un cuidado especial..." rows="3"></textarea>
+      </div>
 
-    <div class="checkbox">
+      <div class="checkbox">
         <input type="checkbox" id="terms">
         <label for="terms">Acepto los términos y condiciones</label>
-    </div>
-
+      </div>
 
       <button type="submit" class="btn">Guardar Información</button>
     </form>
   </div>
 
   <script src="/Lava2/lavadero_project/JS/script.js"></script>
+  <script>
+    // JS para mostrar preview de la foto
+    const fileInput = document.getElementById('profilePic');
+    const previewImg = document.getElementById('preview');
+
+    fileInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          previewImg.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 </body>
 </html>
-<!-- usuarios/templates/usuarios/completarDatos.html -->
