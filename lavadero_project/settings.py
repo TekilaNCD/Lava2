@@ -77,14 +77,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'lavadero_bd',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres', # ¡Recuerda poner tu contraseña real aquí!
-        'HOST': 'localhost',
+        'USER': 'postgresql',
+        'PASSWORD': 'CG8lfoD0xWboZq9s0nlzWuHvDjSTSwP1',
+
+        'HOST': 'dpg-d2sqigemcj7s73ag8cgg-a.oregon-postgres.render.com',
         'PORT': '5432',
-        # ¡ESTA ES LA LÍNEA QUE ARREGLA EL PROBLEMA!
-        'OPTIONS': {
-            'client_encoding': 'UTF8',
-        },
     }
 }
 
@@ -125,9 +122,18 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+import os
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # lavadero_project/settings.py
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/' # <-- ¡Cámbialo a la ruta de tu dashboard!
+LOGOUT_REDIRECT_URL = '/'  # <-- Redirige al login después de logout

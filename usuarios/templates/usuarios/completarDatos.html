@@ -1,90 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAVA2 - Datos Personales</title>
-  <link rel="stylesheet" href="/Lava2/lavadero_project/styles/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAVA2 - Completar Datos</title>
+    
+    <!-- Enlazamos el CSS de forma correcta con la etiqueta static -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/completarDatos.css' %}">
 </head>
-<body class="bg">
-  <div class="container">
-    <h1 class="logo">LAVA2</h1>
-    <h2>Vamos a completar datos</h2>
-    <p>Todos los campos son obligatorios. ¡Llénalos para continuar!</p>
+<body class="completar-datos-bg">
+    <!-- Usamos la nueva clase para el contenedor principal -->
+    <div class="form-container-glass">
+        <h2>Vamos a completar tus datos</h2>
+        <p>Todos los campos marcados con * son obligatorios para continuar.</p>
 
-    <form id="personalForm">
-      <!-- Upload foto perfil -->
-      <div class="profile-upload">
-        <div class="profile-pic">
-          <img id="preview" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Foto de perfil">
-        </div>
-        <input type="file" id="profilePic" accept="image/*" hidden>
-        <label for="profilePic" class="upload-btn">Subir Foto</label>
-      </div>
-        
-      <div class="form-grid">
-        <input type="text" id="nombre" placeholder="Nombre" required>
-        <input type="text" id="apellido" placeholder="Apellido" required>
+        <!-- Aquí se mostrarán los mensajes de error del JS -->
+        <div id="form-error-message"></div>
 
-        <select id="tipoDocumento" required>
-          <option value="">Tipo de Documento</option>
-          <option>Cédula de Ciudadanía</option>
-          <option>Tarjeta de Identidad</option>
-          <option>Cédula de Extranjería</option>
-          <option>Pasaporte</option>
-          <option>Documento de Identidad Extranjero</option>
-        </select>
-        <input type="text" id="numeroDocumento" placeholder="Número de Documento" required>
+        <form id="personalForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <select id="metodoPago" required>
-          <option value="">Método de Pago</option>
-          <option>Tarjeta de Crédito</option>
-          <option>Tarjeta Débito</option>
-          <option>Efectivo</option>
-          <option>Transferencia Bancaria</option>
-          <option>Nequi/Daviplata</option>
-        </select>
-        <input type="text" id="numeroCuenta" placeholder="Número de Cuenta">
+            <!-- Este es un ejemplo de cómo Django podría renderizar un campo -->
+            <!-- {{ form.foto_perfil.label_tag }} {{ form.foto_perfil }} -->
 
-        <input type="text" id="modeloMarca" placeholder="Modelo y marca del vehículo" required>
-        <input type="text" id="placa" placeholder="Placa del Vehículo" required>
+            <!-- Como estás usando HTML estático, lo adaptamos -->
+            <div class="profile-upload">
+                <div class="profile-pic">
+                    <img id="preview" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Foto de perfil">
+                </div>
+                <!-- Es mejor que este input lo maneje el formulario de Django -->
+                <!-- <input type="file" id="profilePic" accept="image/*" hidden> -->
+                <!-- <label for="profilePic" class="upload-btn">Subir Foto</label> -->
+                 {{ form.foto_perfil }}
+            </div>
 
-        <input type="text" id="tipoCarro" placeholder="Tipo de Carro" required>
-        <input type="text" id="ciudad" placeholder="Ciudad" required>
-        <input type="text" id="direccion" placeholder="Dirección" required>
-      </div>
+            <div class="form-grid">
+                <!-- Para cada campo, Django se encargará de renderizar el input correcto -->
+                <!-- Ejemplo para el campo 'nombre' -->
+                <div>
+                    {{ form.nombre.label_tag }}
+                    {{ form.nombre }}
+                </div>
+                <div>
+                    {{ form.apellido.label_tag }}
+                    {{ form.apellido }}
+                </div>
+                
+                 <!-- Django renderizará el resto de campos basado en tu ModelForm -->
+                {% for field in form.visible_fields %}
+                    {% if field.name != 'foto_perfil' and field.name != 'nombre' and field.name != 'apellido' and field.name != 'acepta_terminos' %}
+                    <div>
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
 
-      <!-- Cuidado especial centrado -->
-      <div class="form-group center-textarea">
-        <label for="cuidadoEspecial">¿Tu vehículo requiere cuidado especial?</label>
-        <textarea id="cuidadoEspecial" placeholder="Escribe aquí si tu vehículo necesita un cuidado especial..." rows="3"></textarea>
-      </div>
+            <div class="checkbox">
+                {{ form.acepta_terminos }}
+                <label for="{{ form.acepta_terminos.id_for_label }}">Acepto los términos y condiciones</label>
+            </div>
 
-      <div class="checkbox">
-        <input type="checkbox" id="terms">
-        <label for="terms">Acepto los términos y condiciones</label>
-      </div>
+            <button type="submit" class="btn-submit-glass">Guardar Información</button>
+        </form>
+    </div>
 
-      <button type="submit" class="btn">Guardar Información</button>
-    </form>
-  </div>
-
-  <script src="/Lava2/lavadero_project/JS/script.js"></script>
-  <script>
-    // JS para mostrar preview de la foto
-    const fileInput = document.getElementById('profilePic');
-    const previewImg = document.getElementById('preview');
-
-    fileInput.addEventListener('change', function() {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          previewImg.src = e.target.result;
-        }
-        reader.readAsDataURL(file);
-      }
-    });
-  </script>
+    <!-- Enlazamos el nuevo script de validación -->
+    <script src="{% static 'js/completarDatos.js' %}"></script>
 </body>
 </html>
+

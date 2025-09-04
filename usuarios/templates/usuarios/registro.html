@@ -1,41 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAVA2 - Registro</title>
-  <link rel="stylesheet" href="/Lava2/lavadero_project/styles/styles.css">
+    <meta charset="UTF-8">
+    <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<body>
+    <div class="login-wrapper"> <!-- Reusamos la misma clase para consistencia -->
+        <div class="logo-container">
+            <img src="{% static 'images/logo.png' %}" alt="Logo Lavadero">
+        </div>
 
-<body class="bg">
-  <div class="container">
-    <h1 class="logo">LAVA2</h1>
-    <h2>Crear Cuenta</h2>
-    <p>Ingresa tu email para iniciar en la app</p>
+        <h2>Crear una Cuenta</h2>
 
-    <form id="registerForm">
-      <input type="email" id="email" placeholder="email@domain.com" required>
-      <input type="password" id="password" placeholder="Contraseña" required minlength="6">
-      <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" required>
-      <button type="submit" class="btn">Continuar</button>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- El UserCreationForm es un poco diferente. 'as_p' puede funcionar,
+                 pero si quieres un estilo perfecto, renderiza campo por campo -->
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <small style="color: grey">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
 
-    <div class="social-login">
-      <button class="btn-google">Continuar con Gmail</button>
-      <button class="btn-apple">Continuar con iPhone</button>
+            <button type="submit" class="submit-btn">Registrarse</button>
+        </form>
+
+        <p class="switch-link">
+            ¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a>
+        </p>
     </div>
-
-    <p class="terms">
-      Al hacer clic en continuar, aceptas nuestros <a href="#">Términos de servicio</a> y <a href="#">Política de privacidad</a>.
-    </p>
-
-    
-
-    <p class="login-link">
-      ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
-    </p>
-  </div>
-
-  <script src="/Lava2/lavadero_project/JS/script.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

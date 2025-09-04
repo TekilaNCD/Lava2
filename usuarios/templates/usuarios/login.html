@@ -1,18 +1,44 @@
-<!-- usuarios/templates/usuarios/login.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Entrar</button>
-    </form>
-    <p>¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a></p>
+    <div class="login-wrapper">
+
+        <!-- === AÑADIR EL LOGO AQUÍ === -->
+        <div class="logo-container">
+            <img src="{% static 'images/logo.png' %}" alt="Logo Lavadero">
+        </div>
+
+        <h2>Iniciar Sesión</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Renderizado manual para un mejor control de estilos -->
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Usuario:</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Contraseña:</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="submit-btn">Entrar</button>
+        </form>
+
+        <p class="switch-link">
+            ¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>
+        </p>
+    </div>
+
+        <script src="{% static 'js/script.js' %}"></script>
+
 </body>
 </html>
-

@@ -1,0 +1,150 @@
+/* ========================================= */
+/* ESTILOS PARA EL FORMULARIO DE COMPLETAR DATOS */
+/* ========================================= */
+
+/* Fondo degradado para la página */
+body.completar-datos-bg {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea arriba para scrolls largos */
+    padding: 50px 20px;
+    min-height: 100vh;
+}
+
+/* Contenedor principal con efecto de vidrio */
+.form-container-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: #fff;
+}
+
+.form-container-glass h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-container-glass p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Foto de perfil */
+.profile-upload {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.upload-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Grid para los campos del formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Estilos para inputs, selects y textareas */
+.form-grid input,
+.form-grid select,
+.center-textarea textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Para que el placeholder sea visible */
+::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Campo de cuidado especial */
+.center-textarea {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    margin-top: 10px;
+}
+
+/* Checkbox de términos y condiciones */
+.checkbox {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.checkbox label {
+    margin-left: 10px;
+}
+
+/* Botón de envío */
+.btn-submit-glass {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #4f73c8, #3b5998);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-submit-glass:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para campos con error de validación JS */
+.input-error {
+    border-color: #ff5c5c !important;
+    box-shadow: 0 0 8px rgba(255, 92, 92, 0.5);
+}
+
+#form-error-message {
+    color: #ffcdd2;
+    background-color: rgba(211, 47, 47, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    display: none; /* Oculto por defecto */
+}
+
