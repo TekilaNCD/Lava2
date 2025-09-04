@@ -32,6 +32,12 @@
 
             <button type="submit" class="submit-btn">Entrar</button>
         </form>
+        <!-- ... dentro de tu formulario de login ... -->
+        <p class="switch-link"> 
+            <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+        </p>
+
+
 
         <p class="switch-link">
             ¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>

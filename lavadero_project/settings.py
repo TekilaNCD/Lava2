@@ -137,3 +137,35 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # lavadero_project/settings.py
 LOGIN_REDIRECT_URL = '/dashboard/' # <-- ¡Cámbialo a la ruta de tu dashboard!
 LOGOUT_REDIRECT_URL = '/'  # <-- Redirige al login después de logout
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+
+
+
+
+
+# CONFIGURACIÓN PARA ENVÍO DE CORREOS EN PRODUCCIÓN (con Gmail)
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True  # Usar Transport Layer Security (es un protocolo de seguridad)
+#EMAIL_HOST_USER = 'tu_correo@gmail.com'  # El correo desde el que se enviarán los emails
+#EMAIL_HOST_PASSWORD = 'la_contraseña_de_16_caracteres'  # La contraseña de aplicación que generaste
+
+#Reemplaza:
+
+#tu_correo@gmail.com por la dirección de Gmail que estás usando.
+
+#la_contraseña_de_16_caracteres por la contraseña de aplicación.
+#pip install python-decouple
+
+# Se debe crear un archivo .env en la raíz del proyecto (donde está manage.py) con las variables de entorno:
+#  poner las variables de entorno en el archivo .env y no directamente en settings.py 
+#  así evitamos exponer información sensible en el código fuente.
+
+## .env
+#EMAIL_USER=tu_correo@gmail.com
+#EMAIL_PASSWORD=la_contraseña_de_16_caracteres
+#

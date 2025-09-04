@@ -1,6 +1,6 @@
 # usuarios/urls.py
 
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from . import views # Importamos nuestras vistas personalizadas (la de registro)
 
@@ -23,4 +23,5 @@ urlpatterns = [
     # NUEVA RUTA para completar datos adicionales después del registro
     path('completar-datos/', views.completar_datos_view, name='completar_datos'),
 
+    path('accounts/', include('django.contrib.auth.urls')), 
 ]
