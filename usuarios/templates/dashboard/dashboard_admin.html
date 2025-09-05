@@ -1,0 +1,44 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Panel de Administración | Lavadero Pro{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Panel de Administración</h1>
+    <p>Vista general del negocio y herramientas de gestión.</p>
+</div>
+
+<!-- Sección de tarjetas con métricas clave -->
+<div class="card-grid">
+    <div class="card success">
+        <div class="card-title">Ingresos de Hoy</div>
+        <div class="card-content">$1,250,000</div>
+        <div class="card-footer">15% más que ayer</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Servicios Completados</div>
+        <div class="card-content">32</div>
+        <div class="card-footer">5 servicios en progreso</div>
+    </div>
+    <div class="card warning">
+        <div class="card-title">Clientes Nuevos</div>
+        <div class="card-content">8</div>
+        <div class="card-footer">Este mes: 45</div>
+    </div>
+    <div class="card danger">
+        <div class="card-title">Empleados Activos</div>
+        <div class="card-content">12</div>
+        <div class="card-footer">2 turnos hoy</div>
+    </div>
+</div>
+
+<!-- Sección de acciones rápidas -->
+<div style="margin-top: 2.5rem;">
+    <h2>Acciones Rápidas</h2>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#" class="btn">Gestionar Usuarios</a>
+        <a href="#" class="btn">Ver Reportes Financieros</a>
+        <a href="#" class="btn">Administrar Servicios</a>
+    </div>
+</div>
+{% endblock %}

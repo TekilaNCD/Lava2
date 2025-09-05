@@ -1,0 +1,40 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Mi Cuenta | Lavadero Pro{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Hola de nuevo, {{ user.userprofile.nombre|default:user.username }}</h1>
+    <p>Gestiona tus citas y tu información personal.</p>
+</div>
+
+<div class="card-grid">
+    <!-- Tarjeta principal de acción -->
+    <div class="card" style="grid-column: 1 / -1; text-align: center;">
+        <h2 style="margin-top: 0;">¿Tu vehículo necesita un lavado?</h2>
+        <p>Agenda tu próxima cita con nosotros en pocos clics.</p>
+        <a href="#" class="btn" style="background-color: var(--success);">Agendar un Nuevo Servicio</a>
+    </div>
+
+    <!-- Información del cliente -->
+    <div class="card">
+        <div class="card-title">Mi Próxima Cita</div>
+        <div class="card-content" style="font-size: 1.5rem;">Martes, 9 de Sept - 3:00 PM</div>
+        <div class="card-footer">Servicio: Lavado y Polichado</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Mi Vehículo Registrado</div>
+        <div class="card-content" style="font-size: 1.5rem;">{{ user.userprofile.modelo_marca_vehiculo }}</div>
+        <div class="card-footer">Placa: {{ user.userprofile.placa_vehiculo }}</div>
+    </div>
+</div>
+
+<!-- Acciones secundarias -->
+<div style="margin-top: 2.5rem;">
+    <h2>Otras Opciones</h2>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#" class="btn">Ver Historial de Servicios</a>
+        <a href="#" class="btn">Editar mi Perfil</a>
+    </div>
+</div>
+{% endblock %}

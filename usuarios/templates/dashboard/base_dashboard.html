@@ -1,0 +1,184 @@
+<!-- usuarios/templates/dashboard/base_dashboard.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard | Lavadero{% endblock %}</title>
+    <style>
+        /* --- ESTILOS GENERALES Y RESET --- */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #007bff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #343a40;
+            --text-color: #212529;
+            --white: #ffffff;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN SUPERIOR --- */
+        .navbar {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--medium-gray);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .navbar-user {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-user span {
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        .logout-btn {
+            background-color: var(--danger);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-container {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .dashboard-header {
+            margin-bottom: 2rem;
+        }
+        .dashboard-header h1 {
+            color: var(--dark-gray);
+            margin: 0;
+        }
+        .dashboard-header p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        /* --- TARJETAS (CARDS) --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        .card-content {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+        .card-footer {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        /* Variaciones de color para las tarjetas */
+        .card.success { border-left-color: var(--success); }
+        .card.warning { border-left-color: var(--warning); }
+        .card.danger { border-left-color: var(--danger); }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--white);
+            border-top: 1px solid var(--medium-gray);
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'dashboard' %}" class="navbar-brand">Lavadero Pro</a>
+        <div class="navbar-user">
+            <!-- Mostramos el nombre de pila o, si no, el nombre de usuario -->
+            <span>Hola, {{ user.first_name|default:user.username }}</span>
+            <a href="{% url 'logout' %}" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        {% block content %}
+        <!-- El contenido específico de cada dashboard irá aquí -->
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        &copy; {% now "Y" %} Lavadero Pro. Todos los derechos reservados.
+    </footer>
+</body>
+</html>

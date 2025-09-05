@@ -65,3 +65,38 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f'Perfil de {self.user.username}'
+
+
+# En usuarios/models.py
+
+from django.db import models
+from django.contrib.auth.models import User
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    # --- CAMPO NUEVO PARA EL ROL DEL USUARIO ---
+    TIPO_USUARIO_CHOICES = [
+        ('cliente', 'Cliente'),
+        ('empleado', 'Empleado'),
+        ('admin', 'Administrador'),
+    ]
+    # ¡AQUÍ ESTÁ LA MAGIA!
+    # Por defecto, todos los nuevos perfiles serán 'cliente'.
+    tipo_usuario = models.CharField(
+        max_length=10,
+        choices=TIPO_USUARIO_CHOICES,
+        default='cliente',
+        verbose_name="Tipo de Usuario"
+    )
+
+    # --- TUS CAMPOS EXISTENTES (sin cambios) ---
+    foto_perfil = models.ImageField(upload_to='fotos_perfil/', null=True, blank=True, verbose_name="Foto de Perfil")
+    nombre = models.CharField(max_length=100)
+    # ... (el resto de tus campos: apellido, tipo_documento, etc.)
+    # ...
+    acepta_terminos = models.BooleanField(default=False, verbose_name="Acepta Términos y Condiciones")
+
+    def __str__(self):
+        # Podemos mejorar esto para ver el tipo de usuario en el admin
+        return f'Perfil de {self.user.username} ({self.get_tipo_usuario_display()})'

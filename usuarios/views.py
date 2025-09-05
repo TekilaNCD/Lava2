@@ -56,10 +56,34 @@ def completar_datos_view(request):
 
     return render(request, 'usuarios/completarDatos.html', {'form': form})
 
+# En usuarios/views.py
+
+# ... (tus otras importaciones y vistas de registro/completar datos) ...
+
 @login_required
 def dashboard(request):
     """
-    Muestra la página principal al usuario después de iniciar sesión y completar el perfil.
+    Muestra la página principal (dashboard) al usuario.
+    Esta vista ahora decide qué contenido mostrar según el tipo de usuario.
     """
-    return render(request, 'usuarios/dashboard.html')
+    try:
+        # Intentamos acceder al perfil y obtener el tipo de usuario.
+        # Usamos 'userprofile' en minúsculas, que es como Django crea la relación inversa.
+        tipo_usuario = request.user.userprofile.tipo_usuario
+    except AttributeError:
+        # Si un usuario por alguna razón no tiene perfil (ej. un superusuario antiguo),
+        # lo podemos redirigir a completar sus datos.
+        return redirect('completar_datos')
+
+    # Lógica de decisión para mostrar el menú correcto
+    if tipo_usuario == 'admin':
+        # Renderiza el dashboard para Administradores
+        return render(request, 'dashboard/dashboard_admin.html')
+    elif tipo_usuario == 'empleado':
+        # Renderiza el dashboard para Empleados
+        return render(request, 'dashboard/dashboard_empleado.html')
+    else: # 'cliente'
+        # Renderiza el dashboard para Clientes
+        return render(request, 'dashboard/dashboard_cliente.html')
+
 
